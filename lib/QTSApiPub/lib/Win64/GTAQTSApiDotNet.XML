@@ -1,0 +1,3819 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GTAQTSApiDotNet</name>
+    </assembly>
+    <members>
+        <member name="T:GTAQTS.CQTSDisposable">
+            <summary>
+            托管部分，C接口资源释放
+            </summary>
+        </member>
+        <member name="F:GTAQTS.CQTSDisposable.disposed">
+            <summary>
+            资源释放标志
+            </summary>
+        </member>
+        <member name="M:GTAQTS.CQTSDisposable.Finalize">
+            <summary>
+            析构函数
+            </summary>
+        </member>
+        <member name="M:GTAQTS.CQTSDisposable.DisposeImpl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GTAQTS.CQTSDisposable.DisposeInner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GTAQTS.CQTSDisposable.Dispose">
+            <summary>
+            内存释放
+            </summary>
+        </member>
+        <member name="T:GTAQTS.CQDList`1">
+            <summary>
+            查询快照返回数据封装类，包含资源释放
+            </summary>
+        </member>
+        <member name="F:GTAQTS.CQDList`1.disposed">
+            <summary>
+            资源释放标志
+            </summary>
+        </member>
+        <member name="M:GTAQTS.CQDList`1.Finalize">
+            <summary>
+            析构函数
+            </summary>
+        </member>
+        <member name="M:GTAQTS.CQDList`1.Dispose">
+            <summary>
+            内存释放
+            </summary>
+        </member>
+        <member name="T:GTAQTS.IFieldValue">
+            <summary>
+            字段数值存储结构
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IFieldValue.#ctor(System.IntPtr)">
+            <summary>
+             构造函数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetFieldID">
+            <summary>
+             获取FieldID值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetFieldType">
+            <summary>
+            获取字段的类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetChar(System.Char@)">
+            获取char类型数值
+            @param  cValue  -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetShort(System.Int16@)">
+            获取short类型数值
+            @param  SValue  -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetInt(System.Int32@)">
+            获取int类型数值
+            @param  nValue  -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetUInt(System.UInt32@)">
+            获取unsigned int类型数值
+            @param  unValue  -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetString(System.Byte[]@,System.Int32@)">
+            获取字符串类型数值
+            @param  pValue  -- 字符串内容
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetString(System.String@)">
+            获取字符串类型数值
+            @param  pValue  -- 字符串内容
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetLonglong(System.Int64@)">
+            获取longlong字符类型数值
+            @param  llValue -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetULonglong(System.UInt64@)">
+            获取unsigned longlong字符类型数值
+            @param  ullValue -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetDouble(System.Double@)">
+            获取double类型数值
+            @param  dbValue -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetFloat(System.Single@)">
+            获取float类型数值
+            @param  FValue -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetSequence(System.UInt32[]@,System.Int32@)">
+            获取sequence类型数值(50档行情这种)
+            @param  sqValue -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="M:GTAQTS.IFieldValue.GetSequence(System.Double[]@,System.Int32@)">
+            获取sequence类型数值(50档行情这种)
+            @param  sqValue -- 返回数值
+            @return true -- 正确返回数据， false -- 数据类型错误
+        </member>
+        <member name="T:GTAQTS.IGTAQTSCallbackEx">
+            <summary>
+            扩展行情回调接口
+            API内部使用3个线程进行数据解析，此处需注意多线程问题，状态回调单独一个线程。
+            线程分配。线程一：上交所L1/L2；        线程二：深交所L1/L2；        线程三：中金所/上期所/大商所(L1/L2)/郑商所；
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackEx.OnLoginState(GTAQTS.Model.RetCode)">
+            <summary>
+            登陆状态返回
+            </summary>
+            <param name="errCode">失败原因(用户过期、重复登陆)用户需对这两个进行处理</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackEx.OnConnectionState(GTAQTS.Model.MsgType,GTAQTS.Model.RetCode)">
+            <summary>
+            连接状态返回，连接成功/失败
+            </summary>
+            <param name="msgType">消息类型</param>
+            <param name="errCode">失败原因，成功时返回0</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackEx.OnSessionTagInvalid(System.Object)">
+            <summary>
+            会话标志失效（即在AIP中已经没有使用）
+            </summary>
+            <param name="pSessionTag">会话标志</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackEx.OnSubscribe(GTAQTS.Model.DataCategory,GTAQTS.IQuotationData,System.Object)">
+            <summary>
+            订阅数据实时回调接口,
+            API内部使用3个线程进行数据解析，此处需注意多线程问题，状态回调单独一个线程。
+            线程分配。线程一：上交所L1/L2；        线程二：深交所L1/L2；        线程三：中金所/上期所/大商所(L1/L2)/郑商所；
+            </summary>
+            <param name="msgCategory">返回的数据分类</param>
+            <param name="RealData">实时数据，跳出回调函数范围后，此回调数值将不可用</param>
+            <param name="pSessionTag">订阅数据时传入的用户标志</param>
+        </member>
+        <member name="T:GTAQTS.IGTAQTSApiBase">
+            <summary>
+            QTS基础API
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.#ctor(GTAQTS.IGTAQTSCallbackBase)">
+            <summary>
+            初始化函数
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.DisposeImpl">
+            <summary>
+            释放接口
+            </summary>
+        </member>
+        <member name="F:GTAQTS.IGTAQTSApiBase._instance">
+            <summary>
+            内部定义的单例对象
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.CreateInstance(GTAQTS.IGTAQTSCallbackBase)">
+            <summary>
+            设置并获得实时行情回调
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.ReleaseInstance">
+            <summary>
+            基础API环境反初始化
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.SetTimeout(System.Int32)">
+            <summary>
+            设置超时时间，设置即时生效，同步调用的超时时间
+            </summary>
+            <param name="nSecond"></param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.SetHeartBeatTime(System.Int32)">
+            <summary>
+            设置心跳间隔时长，设置即时生效，
+            </summary>
+            <param name="nSecond"></param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.DelayTest(System.Boolean)">
+            <summary>
+            API到行情网络延迟测试
+            </summary>
+            <param name="bSwitch"></param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.RegisterService(System.String,System.UInt16)">
+            <summary>
+            注册行情服务器地址，可注册多个不同地址，实现高可用，连接顺序为顺序连接，断线时先重连当前使用地址
+            </summary>
+            <param name="pIP">服务器地址.</param>
+            <param name="uPort">服务器端口</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.SetSZL2TickMTCallBack(System.Boolean)">
+            <summary>
+            设置深交所L2 Tick数据多线程回调
+            </summary>
+            <param name="bMTCallBack"></param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.Login(System.String,System.String)">
+            <summary>
+            连接行情服务器，发送用户认证信息，同步请求，调用前需先
+            </summary>
+            <param name="pUserName">账号名称</param>
+            <param name="pPassword">账号密码，加密后密码</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.LoginX(System.String,System.String,System.String)">
+            <summary>
+            连接行情服务器，发送用户认证信息，同步请求，调用前需先
+            </summary>
+            <param name="pUserName">账号名称</param>
+            <param name="pPassword">账号密码，加密后密码</param>
+            <param name="pOptions">可选附加参数，可填充null</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.GetConnectionState">
+            <summary>
+            获取连接状态.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.GetServerAddr(System.Collections.Generic.List{GTAQTS.Model.ServerState}@)">
+            <summary>
+            获取行情订阅服务器地址信息
+            </summary>
+            <param name="ServerState">服务器地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.GetMsgTypeList(System.Collections.Generic.List{GTAQTS.Model.MsgType}@)">
+            <summary>
+            获取有权限的消息类型
+            </summary>
+            <param name="msgType">有权限的数据类型</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.Subscribe(GTAQTS.Model.MsgType,System.String)">
+            <summary>
+            订阅行情，重复订阅同一个数据多次时取并集
+            </summary>
+            <param name="msgType">需要订阅的数据类型</param>
+            <param name="pCodeList">个股订阅列表，以“,”分割，末尾必须以\0结束，为NULL时订阅全市场</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.Unsubscribe(GTAQTS.Model.MsgType,System.String)">
+            <summary>
+            取消订阅
+            </summary>
+            <param name="msgType">需要取消订阅的数据类型</param>
+            <param name="pCodeList">取消个股列表，以“,”分割，末尾必须以\0结束，为NULL时取消所有代码</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.UnsubscribeAll">
+            <summary>
+            取消所有订阅信息
+            </summary>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.GetStockList(System.String,System.Collections.Generic.List{GTAQTS.Model.StockSymbol}@)">
+            <summary>
+            获取股票列表
+            </summary>
+            <param name="pMarketTag">市场标识，以“,”分割多个市场标识，末尾必须以\0结束，不允许为NULL</param>
+            <param name="stockSymbol">返回的个股代码列表，带市场标志</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.BaseQuerySnap``1(System.String,System.Collections.Generic.IEnumerable{``0}@,GTAQTS.IGTAQTSApiBase.dgBaseQuerySnap)">
+            <summary>
+            快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="dataList">快照数据列表</param>
+            <param name="queryDelegate">委托，执行快照查询</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.BaseQuerySnapBulletin(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL1_Bulletin}@,GTAQTS.IGTAQTSApiBase.dgBaseQuerySnap)">
+            <summary>
+            公告快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="dataList">快照数据列表</param>
+            <param name="queryDelegate">委托，执行快照查询</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL1_Static}@)">
+            <summary>
+            查询上交所所L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL1_Quotation}@)">
+            <summary>
+            上交所L1实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSE_IndexPress(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSE_IndexPress}@)">
+            <summary>
+            上交所指数通 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEIndexPress">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_Static}@)">
+            <summary>
+            查询上交所所L2静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL2Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_Quotation}@)">
+            <summary>
+            上交所L2实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL2Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_Index(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_Index}@)">
+            <summary>
+            查询上交所L2指数行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL2Index">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_Overview(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_Overview}@)">
+            <summary>
+            查询上交所L2市场总览 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL2Overview">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_Transaction(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_Transaction}@)">
+            <summary>
+            查询上交所L2逐笔成交 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL2Transaction">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_Auction(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_Auction}@)">
+            <summary>
+            查询上交所L2虚拟集合竞价 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL2Auction">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEIOL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEIOL1_Static}@)">
+            <summary>
+            查询上交所L2证券状态 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEIOL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEIOL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEIOL1_Quotation}@)">
+            <summary>
+            查询上交所L2证券状态 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEIOL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEIOL1_Strategy(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEIOL1_Strategy}@)">
+            <summary>
+            查询上交所个股期权L1组合策略 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEIOL1Strategy">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_Order(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_Order}@)">
+            <summary>
+            查询上交所L2逐笔委托 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：600000)</param>
+            <param name="ppSnapSSEL2Order">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_BondStatic(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_BondStatic}@)">
+            <summary>
+            查询上交所L2债券静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2BondStatic">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_BondQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_BondQuotation}@)">
+            <summary>
+            查询上交所L2债券实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2BondQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_BondTick(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_BondTick}@)">
+            <summary>
+            查询上交所L2债券逐笔数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2BondTick">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL2_BondOverview(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL2_BondOverview}@)">
+            <summary>
+            查询上交所L2债券市场总览 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据)</param>
+            <param name="ppSnapSSEL2BondOverview">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL1_BondStatic(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL1_BondStatic}@)">
+            <summary>
+            查询上交所L1债券静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL1BondStatic">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SSEL1_BondQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SSEL1_BondQuotation}@)">
+            <summary>
+            查询上交所L1债券实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL1BondQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL1_Static}@)">
+            <summary>
+            查询深交所L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL1_Quotation}@)">
+            <summary>
+            查询深交所L1实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL1_Bulletin(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL1_Bulletin}@)">
+            <summary>
+            查询深交所L1公告 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL1Bulletin">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEIOL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEIOL1_Static}@)">
+            <summary>
+            查询深交所个股期权L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEIOL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEIOL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEIOL1_Quotation}@)">
+            <summary>
+            查询深交所个股期权L1实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEIOL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEIOL1_Status(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEIOL1_Status}@)">
+            <summary>
+            查询深交所个股期权L1证券状态 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEIOL1Status">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEIOL1_Strategy(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEIOL1_Strategy}@)">
+            <summary>
+            查询深交所个股期权L1组合策略 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEIOL1Strategy">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL1_BondStatic(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL1_BondStatic}@)">
+            <summary>
+            查询深交所L1债券静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL1BondStatic">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL1_BondQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL1_BondQuotation}@)">
+            <summary>
+            查询深交所L1债券实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_Static}@)">
+            <summary>
+            查询深交所L2静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_Quotation}@)">
+            <summary>
+            查询深交所L2实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_Status(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_Status}@)">
+            <summary>
+            查询深交所L2证券状态 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2StockStatus">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_Index(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_Index}@)">
+            <summary>
+            查询深交所L2指数行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2Index">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_Order(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_Order}@)">
+            <summary>
+            查询深交所L2逐笔委托 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2Order">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_Transaction(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_Transaction}@)">
+            <summary>
+            查询深交所L2逐笔成交 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2Transaction">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_Tick(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_Tick}@)">
+            <summary>
+            查询深交所L2逐笔 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2Tick">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_Cnindex(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_Cnindex}@)">
+            <summary>
+            查询深交所L2国证指数 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2Cnindex">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondStatic(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondStatic}@)">
+            <summary>
+            查询深交所L2债券静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSSEL2BondStatic">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondQuotation}@)">
+            <summary>
+            查询深交所L2债券实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondTransaction(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondTransaction}@)">
+            <summary>
+            查询深交所L2债券逐笔成交行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondTransaction">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondOrder(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondOrder}@)">
+            <summary>
+            查询深交所L2债券逐笔委托行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondOrder">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondTick(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondTick}@)">
+            <summary>
+            查询深交所L2债券逐比消息 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondTick">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondMbrInfo(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondMbrInfo}@)">
+            <summary>
+            查询深交所L2债券交易商信息 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondMbrInfo">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondInvestorInfo(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondInvestorInfo}@)">
+            <summary>
+            查询深交所L2债券交易主体信息 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondInvestorInfo">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondTraderInfo(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondTraderInfo}@)">
+            <summary>
+            查询深交所L2债券交易主体信息 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondTraderInfo">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SZSEL2_BondBidBookingInfo(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SZSEL2_BondBidBookingInfo}@)">
+            <summary>
+            查询深交所L2债券市场竞买预约信息 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapSZSEL2BondBidBookingInfo">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CFFEXL2_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CFFEXL2_Static}@)">
+            <summary>
+            查询深交所L2逐笔成交 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapCFFEXL2Transaction">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CFFEXL2_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CFFEXL2_Quotation}@)">
+            <summary>
+            查询深交所L2逐笔成交 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapCFFEXL2Transaction">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SHFEL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SHFEL1_Static}@)">
+            <summary>
+            查询上期所L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSHFEL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SHFEL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SHFEL1_Quotation}@)">
+            <summary>
+            查询上期所L1实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSHFEL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SHFEL2_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SHFEL2_Static}@)">
+            <summary>
+            查询上期所L2静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSHFEL2Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_SHFEL2_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.SHFEL2_Quotation}@)">
+            <summary>
+            查询上期所L2实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSHFEL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_INEL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.INEL1_Static}@)">
+            <summary>
+            查询上期能源L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapINEL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_INEL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.INEL1_Quotation}@)">
+            <summary>
+            查询上期能源L1实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapINEL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_INEL2_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.INEL2_Static}@)">
+            <summary>
+            查询上期能源L2静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapINEL2Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_INEL2_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.INEL2_Quotation}@)">
+            <summary>
+            查询上期能源L2实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapINEL2Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL1_Static}@)">
+            <summary>
+            查询郑商所L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1_Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL1_Quotation}@)">
+            <summary>
+            查询郑商所L1实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL1_ArbiQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL1_ArbiQuotation}@)">
+            <summary>
+            查询郑商所L1套利行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1ArbiQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL1_MktStatus(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL1_MktStatus}@)">
+            <summary>
+            查询郑商所L1市场状态 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1MktStatus">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL1_Status(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL1_Status}@)">
+            <summary>
+            查询郑商所L1品种状态 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1Status">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_ESUNNY_Index(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.ESUNNY_Index}@)">
+            <summary>
+            查询易盛指数行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapESUNNY_Index">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL2_ArbiStatic(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL2_ArbiStatic}@)">
+            <summary>
+             郑商所L2套利静态数据快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL2_ArbiStatic">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL2_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL2_Static}@)">
+            <summary>
+             郑商所L2静态数据快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL2_Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL2_MktStatus(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL2_MktStatus}@)">
+            <summary>
+            郑商所L2市场状态 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL2_MktStatus">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL2_Status(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL2_Status}@)">
+            <summary>
+             郑商所L2品种状态快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL2_Status">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL2_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL2_Quotation}@)">
+            <summary>
+             郑商所L2实时行情(不常变部分)快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL2_Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL2_ChgQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL2_ChgQuotation}@)">
+            <summary>
+             郑商所L2实时行情(常变部分)快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL2_ChgQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL2_LevelQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL2_LevelQuotation}@)">
+            <summary>
+             郑商所L2五档深度委托行情快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL2_LevelQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_CZCEL2_MarchPriceQty(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.CZCEL2_MarchPriceQty}@)">
+            <summary>
+             郑商所L2分价成交量行情快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL2_MarchPriceQty">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL1_Static}@)">
+            <summary>
+            查询大商所L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL1_MktStatus(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL1_MktStatus}@)">
+            <summary>
+            查询大商所L1市场状态快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL1_Status(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL1_Status}@)">
+            <summary>
+            查询大商所L1交易状态快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_Status">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL1_OptionParameter(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL1_OptionParameter}@)">
+            <summary>
+            查询大商所L1期权参数快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_OptionParameter">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL1_Quotation}@)">
+            <summary>
+            查询大商所L1深度行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL1_ArbiQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL1_ArbiQuotation}@)">
+            <summary>
+            查询大商所L1套利深度行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_ArbiQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_Static}@)">
+            <summary>
+            查询大商所L2静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_Quotation}@)">
+            <summary>
+            查询大商所L2深度行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_ArbiQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_ArbiQuotation}@)">
+            <summary>
+            查询大商所L2套利深度行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_ArbiQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_RealTimePrice(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_RealTimePrice}@)">
+            <summary>
+            查询大商所L2实时结算价行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_RealTimePrice">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_OrderStatistic(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_OrderStatistic}@)">
+            <summary>
+            查询大商所L2委托统计行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_OrderStatistic">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_MarchPriceQty(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_MarchPriceQty}@)">
+            <summary>
+            查询大商所L2分价成交量行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_MarchPriceQty">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_MktStatus(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_MktStatus}@)">
+            <summary>
+            查询大商所L2市场状态快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_Status(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_Status}@)">
+            <summary>
+            查询大商所L2交易状态快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_Status">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_OptionParameter(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_OptionParameter}@)">
+            <summary>
+            查询大商所L2期权参数快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_OptionParameter">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_LevelQuotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_LevelQuotation}@)">
+            <summary>
+            查询大商所L2五档深度行情快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_LevelQuotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_DCEL2_OrderQueue(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.DCEL2_OrderQueue}@)">
+            <summary>
+            查询大商所L2委托队列行情快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_OrderQueue">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKEXL2_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKEXL2_Static}@)">
+            <summary>
+            查询港交所L2静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKEXL2Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKEXL2_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKEXL2_Quotation}@)">
+            <summary>
+            查询港交所L2市场行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKEXL2Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKEXL2_BrokerQueue(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKEXL2_BrokerQueue}@)">
+            <summary>
+            查询港交所L2经纪人队列 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKEXL2BrokerQueue">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKEXL2_Index(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKEXL2_Index}@)">
+            <summary>
+            查询港交所L2指数行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKEXL2Index">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKEXL2_Overview(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKEXL2_Overview}@)">
+            <summary>
+            查询港交所L2市场总览 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKEXL2Overview">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKSZL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKSZL1_Static}@)">
+            <summary>
+            查询深港通L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKSZL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKSZL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKSZL1_Quotation}@)">
+            <summary>
+            查询深港通L1市场行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKSZL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKSHL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKSHL1_Static}@)">
+            <summary>
+            查询沪港通L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKSHL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKSHL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKSHL1_Quotation}@)">
+            <summary>
+            查询沪港通L1市场行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKSHL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKEXL2_DQB(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKEXL2_DQB}@)">
+            <summary>
+            查询港交所L2互联市场日余额快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKEXL2DQB">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKEXL2_MoneyFlow(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKEXL2_MoneyFlow}@)">
+            <summary>
+            查询港交所L2资金流向快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKEXL2MoneyFlow">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKSHL1_Overview(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKSHL1_Overview}@)">
+            <summary>
+            查询沪港通L1市场总览快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKSHL1Overview">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_HKSZL1_Overview(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.HKSZL1_Overview}@)">
+            <summary>
+            查询深港通L1市场总览快照
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapHKSZL1Overview">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_BSEL1_Static(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.BSEL1_Static}@)">
+            <summary>
+            查询北交所L1静态数据 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapBSEL1Static">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiBase.QuerySnap_BSEL1_Quotation(System.String,System.Collections.Generic.IEnumerable{GTAQTS.Model.BSEL1_Quotation}@)">
+            <summary>
+            查询北交所L1实时行情 快照查询
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据(如：000001)</param>
+            <param name="ppSnapBSEL1Quotation">快照数据列表</param>
+            <returns>返回结果列表</returns>
+        </member>
+        <member name="P:GTAQTS.IGTAQTSApiBase.Instance">
+            <summary>
+            外部使用的单例对象
+            </summary>
+        </member>
+        <member name="T:GTAQTS.IGTAQTSApiBase.dgBaseQuerySnap">
+            <summary>
+            查询事件委托
+            </summary>
+            <param name="pCodeList"></param>
+            <param name="ppSnap"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBaseImpl.OnLoginState(GTAQTS.Model.RetCode)">
+            <summary>
+            登陆状态返回
+            </summary>
+            <param  name="errCode">失败原因(用户过期、重复登陆)用户需对这两个进行处理 </param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBaseImpl.OnConnectionState(GTAQTS.Model.MsgType,GTAQTS.Model.RetCode)">
+            <summary>
+            连接状态返回，连接成功/失败
+            </summary>
+            <param  name="msgType">消息类型 </param>
+            <param  name="errCode">失败原因，成功时返回0 </param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBaseImpl.OnDelayTimeRecived(GTAQTS.Model.DelayTimeInfo@)">
+            <summary>
+            延时数据返回
+            </summary>
+            <param  name="pDelayTime">延时数据 </param>
+        </member>
+        <member name="P:GTAQTS.IGTAQTSCallbackBaseImpl.Instance">
+             <summary>
+            单例
+             </summary>
+        </member>
+        <member name="T:GTAQTS.IGTAQTSApiEx">
+            <summary>
+            QTS扩展API
+            </summary>
+        </member>
+        <member name="F:GTAQTS.IGTAQTSApiEx.m_isUninit">
+            <summary>
+            是否已经释放对象
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.#ctor(GTAQTS.IGTAQTSCallbackEx)">
+            <summary>
+            初始化函数
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.DisposeImpl">
+            <summary>
+            释放接口
+            </summary>
+        </member>
+        <member name="F:GTAQTS.IGTAQTSApiEx._instance">
+            <summary>
+            内部定义单例对象
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.CreateInstance(GTAQTS.IGTAQTSCallbackEx)">
+            <summary>
+            基础API环境初始化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.ReleaseInstance">
+            <summary>
+            基础API环境反初始化
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.SetTimeout(System.Int32)">
+            <summary>
+            设置超时时间，设置即时生效，同步调用的超时时间
+            </summary>
+            <param name="nSecond">同步操作超时时间，秒</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.RegisterService(System.String,System.UInt16)">
+            <summary>
+            注册行情服务器地址，可注册多个不同地址，实现高可用，连接顺序为顺序连接，断线时先重连当前使用地址
+            </summary>
+            <param name="pIP">服务器地址.</param>
+            <param name="uPort">服务器端口</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.Login(System.String,System.String)">
+            <summary>
+            连接行情服务器，发送用户认证信息，同步请求，调用前需先
+            </summary>
+            <param name="pUserName">账号名称</param>
+            <param name="pPassword">账号密码，加密后密码</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.GetConnectionState">
+            <summary>
+            获取连接状态.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.GetServerAddr(System.Collections.Generic.List{GTAQTS.Model.ServerState}@)">
+            <summary>
+            获取行情订阅服务器地址信息
+            </summary>
+            <param name="ServerState">服务器地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.GetMsgTypeList(System.Collections.Generic.List{GTAQTS.Model.MsgType}@)">
+            <summary>
+            获取有权限的消息类型
+            </summary>
+            <param name="msgType">有权限的数据类型</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.GetStockList(System.String,System.Collections.Generic.List{GTAQTS.Model.StockSymbol}@)">
+            <summary>
+            获取股票列表
+            </summary>
+            <param name="pMarketTag">市场标识，以“,”分割多个市场标识，末尾必须以\0结束，不允许为NULL</param>
+            <param name="stockSymbol">返回的个股代码列表，带市场标志</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.QuerySnap(GTAQTS.Model.DataCategory,System.String,System.Collections.Generic.List{GTAQTS.IQuotationData}@)">
+            <summary>
+            查询快照数据
+            </summary>
+            <param name="msgCategory">需要查询的数据分类</param>
+            <param name="pCodeList">个股订阅列表，以“,”分割，末尾必须以\0结束，不允许为NULL</param>
+            <param name="ppSnapData">快照数据列表</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.Subscribe(GTAQTS.Model.DataCategory,System.String,System.Object)">
+            <summary>
+            订阅行情，重复订阅同一个数据多次时取并集
+            </summary>
+            <param name="msgCategory">需要订阅的数据类型</param>
+            <param name="pCodeList">个股订阅列表，以“,”分割，末尾必须以\0结束，不允许为NULL</param>
+            <param name="pSessionTag">会话标志,回调参数，在OnSubscribe时返回该数值--Marshal.StringToHGlobalAnsi 格式，在接受实时数据时候做对应的转换</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.Unsubscribe(GTAQTS.Model.DataCategory,System.String,System.Object)">
+            <summary>
+            根据数据分类、用户标识和代码列表取消订阅
+            </summary>
+            <param name="msgCategory">需要取消订阅的数据类型</param>
+            <param name="pCodeList">取消个股列表，以“,”分割，末尾必须以\0结束，不允许为NULL</param>
+            <param name="pSessionTag">会话标志,回调参数，在OnSubscribe时返回该数值</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.UnsubscribeByCategory(GTAQTS.Model.DataCategory,System.String)">
+            <summary>
+            根据数据分类和代码列表取消订阅
+            </summary>
+            <param name="msgCategory">取消订阅的数据分类</param>
+            <param name="pCodeList">取消个股列表，以“,”分割，末尾必须以\0结束</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.UnsubscribeBySessionTag(System.Object,System.String)">
+            <summary>
+            根据数据分类和代码列表取消订阅
+            </summary>
+            <param name="pSessionTag">会话标志,取消该标志关联的所有订阅</param>
+            <param name="pCodeList">取消个股列表，以“,”分割，末尾必须以\0结束</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSApiEx.UnsubscribeAll">
+            <summary>
+            取消所有订阅信息
+            </summary>
+            <returns>错误代码</returns>
+        </member>
+        <member name="P:GTAQTS.IGTAQTSApiEx.Instance">
+            <summary>
+            外部使用单例对象
+            </summary>
+        </member>
+        <member name="T:GTAQTS.IGTAQTSCallbackBase">
+            <summary>
+            基础行情回调接口
+            API内部使用3个线程进行数据解析，此处需注意多线程问题。状态回调单独一个线程。
+            线程分配。线程一：上交所L1/L2；        线程二：深交所L1/L2；        线程三：中金所/上期所/大商所(L1/L2)/郑商所；
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnLoginState(GTAQTS.Model.RetCode)">
+            <summary>
+            登陆状态返回
+            </summary>
+            <param  name="errCode">失败原因(用户过期、重复登陆)用户需对这两个进行处理 </param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnConnectionState(GTAQTS.Model.MsgType,GTAQTS.Model.RetCode)">
+            <summary>
+            连接状态返回，连接成功/失败
+            </summary>
+            <param  name="msgType">消息类型 </param>
+            <param  name="errCode">失败原因，成功时返回0 </param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnDelayTime(GTAQTS.Model.DelayTimeInfo)">
+            <summary>
+            延时数据返回
+            </summary>
+            <param  name="DelayTime">延时数据 </param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL1_Static(GTAQTS.Model.SSEL1_Static@)">
+            <summary>
+            上交所L1静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL1_Quotation(GTAQTS.Model.SSEL1_Quotation@)">
+            <summary>
+            上交所L1实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSE_IndexPress(GTAQTS.Model.SSE_IndexPress@)">
+            <summary>
+            上交所指数通订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEIndexPress">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_Static(GTAQTS.Model.SSEL2_Static@)">
+            <summary>
+            上交所L2静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEL2Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_Quotation(GTAQTS.Model.SSEL2_Quotation@)">
+            <summary>
+            上交所L2实时行情快照订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEL2Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_Index(GTAQTS.Model.SSEL2_Index@)">
+            <summary>
+            上交所L2指数行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEL2Index">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_Transaction(GTAQTS.Model.SSEL2_Transaction@)">
+            <summary>
+            上交所L2逐笔成交订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEL2Transaction">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_Auction(GTAQTS.Model.SSEL2_Auction@)">
+            <summary>
+            上交所L2虚拟集合竞价订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEL2Auction">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_Overview(GTAQTS.Model.SSEL2_Overview@)">
+            <summary>
+            上交所L2市场总览订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEL2Overview">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEIOL1_Static(GTAQTS.Model.SSEIOL1_Static@)">
+            <summary>
+            上交所个股期权静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEIOL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEIOL1_Quotation(GTAQTS.Model.SSEIOL1_Quotation@)">
+            <summary>
+            上交所个股期权实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealSSEIOL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEIOL1_Strategy(GTAQTS.Model.SSEIOL1_Strategy@)">
+            <summary>
+            上交所个股期权L1组合策略实时回调接口
+            </summary>
+            <param  name="RealSSEIOL1_Strategy">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL1_Static(GTAQTS.Model.SZSEL1_Static@)">
+            <summary>
+            深交所L1静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealSZSEL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL1_Quotation(GTAQTS.Model.SZSEL1_Quotation@)">
+            <summary>
+            深交所L1实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealSZSEL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL1_Bulletin(GTAQTS.Model.SZSEL1_Bulletin)">
+            <summary>
+            深交所L1公告数据实时回调接口
+            </summary>
+            <param  name="RealSZSEL1Bulletin">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEIOL1_Static(GTAQTS.Model.SZSEIOL1_Static@)">
+            <summary>
+            深交所个股期权L1静态数据实时回调接口
+            </summary>
+            <param  name="RealSZSEIOL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEIOL1_Quotation(GTAQTS.Model.SZSEIOL1_Quotation@)">
+            <summary>
+            深交所个股期权L1实时行情实时回调接口
+            </summary>
+            <param  name="RealSZSEIOL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEIOL1_Status(GTAQTS.Model.SZSEIOL1_Status@)">
+            <summary>
+            深交所个股期权L1证券状态实时回调接口
+            </summary>
+            <param  name="RealSZSEIOL1Status">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEIOL1_Strategy(GTAQTS.Model.SZSEIOL1_Strategy@)">
+            <summary>
+            深交所个股期权L1组合策略实时回调接口
+            </summary>
+            <param  name="RealSZSEIOL1_Strategy">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_Static(GTAQTS.Model.SZSEL2_Static@)">
+            <summary>
+            深交所L2静态数据订阅数据实时回调接口
+            </summary>
+            <param name="RealSZSEL2Static"></param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_Quotation(GTAQTS.Model.SZSEL2_Quotation@)">
+            <summary>
+            深交所L2实时行情订阅数据实时回调接口
+            </summary>
+            <param name="RealSZSEL2Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_Status(GTAQTS.Model.SZSEL2_Status@)">
+            <summary>
+            深交所L2证券状态订阅数据实时回调接口
+            </summary>
+            <param name="RealSZSEL2Status">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_Index(GTAQTS.Model.SZSEL2_Index@)">
+            <summary>
+            深交所L2指数行情订阅数据实时回调接口
+            </summary>
+            <param name="RealSZSEL2Index">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_Order(GTAQTS.Model.SZSEL2_Order@)">
+            <summary>
+            深交所L2逐笔委托订阅数据实时回调接口
+            </summary>
+            <param name="RealSZSEL2Order">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_Transaction(GTAQTS.Model.SZSEL2_Transaction@)">
+            <summary>
+            深交所L2逐笔成交订阅数据实时回调接口
+            </summary>
+            <param name="RealSZSEL2Transaction">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_Tick(GTAQTS.Model.SZSEL2_Tick@)">
+            <summary>
+            深交所L2逐笔订阅数据实时回调接口
+            </summary>
+            <param name="RealSZSEL2Tick">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CFFEXL2_Static(GTAQTS.Model.CFFEXL2_Static@)">
+            <summary>
+            中金所静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealCFFEXL2Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CFFEXL2_Quotation(GTAQTS.Model.CFFEXL2_Quotation@)">
+            <summary>
+            中金所L2实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealCFFEXL2Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL1_Static(GTAQTS.Model.CZCEL1_Static@)">
+            <summary>
+            郑商所静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL1_Quotation(GTAQTS.Model.CZCEL1_Quotation@)">
+            <summary>
+            郑商所实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL1_ArbiQuotation(GTAQTS.Model.CZCEL1_ArbiQuotation@)">
+            <summary>
+            郑商所套利行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL1ArbiQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL1_MktStatus(GTAQTS.Model.CZCEL1_MktStatus@)">
+            <summary>
+            郑商所L1市场状态订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL1MktStatus">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL1_Status(GTAQTS.Model.CZCEL1_Status@)">
+            <summary>
+            郑商所L1品种状态订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL1Status">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_ESUNNY_Index(GTAQTS.Model.ESUNNY_Index)">
+            <summary>
+            易胜指数订阅数据实时回调接口
+            </summary>
+            <param  name="RealESUNNY_Index">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL2_ArbiStatic(GTAQTS.Model.CZCEL2_ArbiStatic@)">
+            <summary>
+            郑商所L2套利静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL2ArbiStatic">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL2_Static(GTAQTS.Model.CZCEL2_Static@)">
+            <summary>
+            郑商所L2静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL2Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL2_MktStatus(GTAQTS.Model.CZCEL2_MktStatus@)">
+            <summary>
+            郑商所L2市场状态订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL2MktStatus">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL2_Status(GTAQTS.Model.CZCEL2_Status@)">
+            <summary>
+            郑商所L2品种状态订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL2Status">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL2_Quotation(GTAQTS.Model.CZCEL2_Quotation@)">
+            <summary>
+            郑商所L2实时行情(不常变部分)订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL2Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL2_ChgQuotation(GTAQTS.Model.CZCEL2_ChgQuotation@)">
+            <summary>
+            郑商所L2实时行情(常变部分)订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL2ChgQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL2_LevelQuotation(GTAQTS.Model.CZCEL2_LevelQuotation@)">
+            <summary>
+            郑商所L2五档深度委托行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL2LevelQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_CZCEL2_MarchPriceQty(GTAQTS.Model.CZCEL2_MarchPriceQty@)">
+            <summary>
+            郑商所L2分价成交量行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealCZCEL2MarchPriceQty">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL1_Static(GTAQTS.Model.DCEL1_Static@)">
+            <summary>
+            大商所L1静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL1_MktStatus(GTAQTS.Model.DCEL1_MktStatus@)">
+            <summary>
+            大商所L1市场状态订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL1MktStatus">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL1_Status(GTAQTS.Model.DCEL1_Status@)">
+            <summary>
+            大商所L1交易状态订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL1Status">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL1_OptionParameter(GTAQTS.Model.DCEL1_OptionParameter@)">
+            <summary>
+            大商所L1期权参数订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL1OptionParameter">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL1_Quotation(GTAQTS.Model.DCEL1_Quotation@)">
+            <summary>
+            大商所L1深度行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL1_ArbiQuotation(GTAQTS.Model.DCEL1_ArbiQuotation@)">
+            <summary>
+            大商所L1套利深度行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL1ArbiQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_Static(GTAQTS.Model.DCEL2_Static@)">
+            <summary>
+            大商所L2静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_Quotation(GTAQTS.Model.DCEL2_Quotation@)">
+            <summary>
+            大商所L2最优深度行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_ArbiQuotation(GTAQTS.Model.DCEL2_ArbiQuotation@)">
+            <summary>
+            大商所L2最优套利深度行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2ArbiQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_RealTimePrice(GTAQTS.Model.DCEL2_RealTimePrice@)">
+            <summary>
+            大商所L2实时结算价订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2RealTimePrice">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_OrderStatistic(GTAQTS.Model.DCEL2_OrderStatistic@)">
+            <summary>
+            大商所L2委托统计行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2OrderStatistic">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_MarchPriceQty(GTAQTS.Model.DCEL2_MarchPriceQty@)">
+            <summary>
+            大商所L2分价成交量行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2MarchPriceQty">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_MktStatus(GTAQTS.Model.DCEL2_MktStatus@)">
+            <summary>
+            大商所L2市场状态订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2MktStatus">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_Status(GTAQTS.Model.DCEL2_Status@)">
+            <summary>
+            大商所L2交易状态订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2Status">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_OptionParameter(GTAQTS.Model.DCEL2_OptionParameter@)">
+            <summary>
+            大商所L2期权参数订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2OptionParameter">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_LevelQuotation(GTAQTS.Model.DCEL2_LevelQuotation@)">
+            <summary>
+            大商所L2五档深度行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2LevelQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_DCEL2_OrderQueue(GTAQTS.Model.DCEL2_OrderQueue@)">
+            <summary>
+            大商所L2委托队列行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealDCEL2OrderQueue">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SHFEL1_Static(GTAQTS.Model.SHFEL1_Static@)">
+            <summary>
+            上期所L1静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealSHFEL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SHFEL1_Quotation(GTAQTS.Model.SHFEL1_Quotation@)">
+            <summary>
+            上期所L1实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealSHFEL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_INEL1_Static(GTAQTS.Model.INEL1_Static@)">
+            <summary>
+            上期能源L1静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealINEL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_INEL1_Quotation(GTAQTS.Model.INEL1_Quotation@)">
+            <summary>
+            上期能源L1实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealINEL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SHFEL2_Static(GTAQTS.Model.SHFEL2_Static@)">
+            <summary>
+            上期所L2静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealSHFEL2Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SHFEL2_Quotation(GTAQTS.Model.SHFEL2_Quotation@)">
+            <summary>
+            上期所L2实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealSHFEL2Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_INEL2_Static(GTAQTS.Model.INEL2_Static@)">
+            <summary>
+            上期能源L2静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealINEL2Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_INEL2_Quotation(GTAQTS.Model.INEL2_Quotation@)">
+            <summary>
+            上期能源L2实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealINEL2Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKEXL2_Static(GTAQTS.Model.HKEXL2_Static@)">
+            <summary>
+            港交所L2静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKEXL2Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKEXL2_Quotation(GTAQTS.Model.HKEXL2_Quotation@)">
+            <summary>
+            港交所L2实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKEXL2Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKEXL2_BrokerQueue(GTAQTS.Model.HKEXL2_BrokerQueue@)">
+            <summary>
+            港交所L2经纪人队列订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKEXL2BrokerQueue">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKEXL2_Index(GTAQTS.Model.HKEXL2_Index@)">
+            <summary>
+            港交所L2指数行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKEXL2Index">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKEXL2_Overview(GTAQTS.Model.HKEXL2_Overview@)">
+            <summary>
+            港交所L2市场总览订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKEXL2Overview">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKSZL1_Static(GTAQTS.Model.HKSZL1_Static@)">
+            <summary>
+            深港通L1静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKSZL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKSZL1_Quotation(GTAQTS.Model.HKSZL1_Quotation@)">
+            <summary>
+            深港通L1实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKSZL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKSHL1_Static(GTAQTS.Model.HKSHL1_Static@)">
+            <summary>
+            沪港通L1静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKSHL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKSHL1_Quotation(GTAQTS.Model.HKSHL1_Quotation@)">
+            <summary>
+            沪港通L1实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealHKSHL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKEXL2_DQB(GTAQTS.Model.HKEXL2_DQB@)">
+            <summary>
+            港交所L2互联市场日余额回调接口
+            </summary>
+            <param  name="RealHKEXL2DQB">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKEXL2_MoneyFlow(GTAQTS.Model.HKEXL2_MoneyFlow@)">
+            <summary>
+            港交所L2资金流向回调接口
+            </summary>
+            <param  name="RealHHKEXL2MoneyFlow">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKSHL1_Overview(GTAQTS.Model.HKSHL1_Overview@)">
+            <summary>
+            沪港通L1市场总览回调接口
+            </summary>
+            <param  name="RealHKSHL1Overview">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_HKSZL1_Overview(GTAQTS.Model.HKSZL1_Overview@)">
+            <summary>
+            深港通L1市场总览回调接口
+            </summary>
+            <param  name="RealHKSZL1Overview">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_Order(GTAQTS.Model.SSEL2_Order@)">
+            <summary>
+            上交所L2逐笔委托回调接口
+            </summary>
+            <param  name="RealSSEL2Order">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_Cnindex(GTAQTS.Model.SZSEL2_Cnindex@)">
+            <summary>
+            深交所L2国证指数回调接口
+            </summary>
+            <param  name="RealSZSEL2Cnindex">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_BondStatic(GTAQTS.Model.SSEL2_BondStatic@)">
+            <summary>
+            上交所L2债券静态数据回调接口
+            </summary>
+            <param  name="RealSSEL2BondStatic">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_BondQuotation(GTAQTS.Model.SSEL2_BondQuotation@)">
+            <summary>
+            上交所L2债券实时行情回调接口
+            </summary>
+            <param  name="RealSSEL2BondQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_BondTick(GTAQTS.Model.SSEL2_BondTick@)">
+            <summary>
+            上交所L2债券逐笔数据回调接口
+            </summary>
+            <param  name="">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL2_BondOverview(GTAQTS.Model.SSEL2_BondOverview@)">
+            <summary>
+            上交所L2债券市场总览回调接口
+            </summary>
+            <param  name="RealSSEL2BondOverview">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL1_BondStatic(GTAQTS.Model.SSEL1_BondStatic@)">
+            <summary>
+            上交所L1债券静态数据回调接口
+            </summary>
+            <param  name="RealSSEL1BondStatic">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SSEL1_BondQuotation(GTAQTS.Model.SSEL1_BondQuotation@)">
+            <summary>
+            上交所L1债券实时行情回调接口
+            </summary>
+            <param  name="RealSSEL1BondQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL1_BondStatic(GTAQTS.Model.SZSEL1_BondStatic@)">
+            <summary>
+            深交所L1债券静态数据回调接口
+            </summary>
+            <param  name="RealSZSEL1BondStatic">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL1_BondQuotation(GTAQTS.Model.SZSEL1_BondQuotation@)">
+            <summary>
+            深交所L1债券实时行情回调接口
+            </summary>
+            <param  name="RealSSEL1BondQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondStatic(GTAQTS.Model.SZSEL2_BondStatic@)">
+            <summary>
+            深交所L2债券静态数据回调接口
+            </summary>
+            <param  name="RealSZSEL2BondStatic">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondQuotation(GTAQTS.Model.SZSEL2_BondQuotation@)">
+            <summary>
+            深交所L2债券实时行情回调接口
+            </summary>
+            <param  name="RealSSEL2BondQuotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondTransaction(GTAQTS.Model.SZSEL2_BondTransaction@)">
+            <summary>
+            深交所L2债券逐笔成交
+            </summary>
+            <param  name="RealSSEL2BondTransaction">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondOrder(GTAQTS.Model.SZSEL2_BondOrder@)">
+            <summary>
+            深交所L2债券逐笔委托
+            </summary>
+            <param  name="RealSSEL2BondOrder">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondTick(GTAQTS.Model.SZSEL2_BondTick@)">
+            <summary>
+            深交所L2债券逐比消息
+            </summary>
+            <param  name="RealSZSEL2BondTick">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondMbrInfo(GTAQTS.Model.SZSEL2_BondMbrInfo@)">
+            <summary>
+            深交所L2债券交易商信息
+            </summary>
+            <param  name="RealSZSEL2BondMbrInfo">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondInvestorInfo(GTAQTS.Model.SZSEL2_BondInvestorInfo@)">
+            <summary>
+            深交所L2债券交易主体信息
+            </summary>
+            <param  name="RealSZSEL2BondInvestorInfo">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondTraderInfo(GTAQTS.Model.SZSEL2_BondTraderInfo@)">
+            <summary>
+            深交所L2债券交易员信息
+            </summary>
+            <param  name="RealSZSEL2BondTraderInfo">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_BSEL1_Static(GTAQTS.Model.BSEL1_Static@)">
+            <summary>
+            北交所L1静态数据订阅数据实时回调接口
+            </summary>
+            <param  name="RealBSEL1Static">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_BSEL1_Quotation(GTAQTS.Model.BSEL1_Quotation@)">
+            <summary>
+            北交所L1实时行情订阅数据实时回调接口
+            </summary>
+            <param  name="RealBSEL1Quotation">实时数据</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackBase.OnSubscribe_SZSEL2_BondBidBookingInfo(GTAQTS.Model.SZSEL2_BondBidBookingInfo@)">
+            <summary>
+            深交所L2债券市场竞买预约信息实时回调接口
+            </summary>
+            <param  name="RealSZSEL2BondBidBookingInfo">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.IQuotationData">
+            <summary>
+            行情数据，按字段返回数据结构
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IQuotationData.#ctor(System.IntPtr)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IQuotationData.GetMsgType">
+            <summary>
+            当前数据的消息类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IQuotationData.Count">
+            <summary>
+            字段个数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IQuotationData.GetFieldValue(GTAQTS.Model.FieldID)">
+            根据字段名称获取数值
+            @param  FID         -- 字段ID标志
+            @return CFieldValue -- 返回字段内容
+        </member>
+        <member name="M:GTAQTS.IQuotationData.SetFirstPos">
+            按顺序读写方式
+        </member>
+        <member name="M:GTAQTS.IQuotationData.GetCurPosValue">
+            获取当前位置数值
+        </member>
+        <member name="M:GTAQTS.IQuotationData.SetNextPos">
+            移到下一个字段
+        </member>
+        <member name="P:GTAQTS.IQuotationData.Item(System.Int32)">
+            顺序读取根据字段名称获取数值，重载下标操作符
+            @return CFieldValue -- 返回字段内容
+        </member>
+        <member name="T:GTAQTS.MarshalPtr">
+            <summary>
+            C处理类
+            </summary>
+        </member>
+        <member name="M:GTAQTS.MarshalPtr.MarshalPtrToStructArray``1(System.IntPtr,System.Int32)">
+            <summary>
+            泛型函数实现转换功能
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="p"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.MarshalPtr.MarshalPtrToStructArrayBulletin(System.IntPtr,System.Int32)">
+            <summary>
+            公告函数实现转换功能
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="p"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll">
+            <summary>
+            GTAQTSApiDll
+            </summary>
+            <summary>
+            GTAQTSApiDll
+            </summary>
+            <summary>
+            GTAQTSApiDll
+            </summary>
+            <summary>
+            GTAQTSApiDll
+            </summary>
+            <summary>
+            GTAQTSApiDll
+            </summary>
+            <summary>
+            GTAQTSApiDll
+            </summary>
+            <summary>
+            GTAQTSApiDll
+            </summary>
+            <summary>
+            GTAQTSApiDll
+            </summary>
+            <summary>
+            GTAQTSApiDll
+            </summary>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseInit">
+            <summary>
+            基础API环境初始化
+            </summary>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseUninit">
+            <summary>
+            基础API环境反初始化
+            </summary>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseSetTimeout(System.Int32)">
+            <summary>
+            设置超时时间，设置即时生效，同步调用的超时时间
+            </summary>
+            <param name="nSecond">超时时间，单位秒</param>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseSetHeartBeatTime(System.Int32)">
+            <summary>
+            设置心跳间隔时长，设置即时生效，同步调用的超时时间
+            </summary>
+            <param name="nSecond">心跳间隔时长，单位秒</param>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseDelayTest(System.Boolean)">
+            <summary>
+            API到行情网络延迟测试
+            </summary>
+            <param name="bSwitch">开关,true 开启  false  关闭</param>
+            <returns>错误代码, Ret_Success:成功;Ret_Error:失败(未订阅行情)</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseRegisterService(System.String,System.UInt16)">
+            <summary>
+            注册行情服务器地址，可注册多个不同地址，实现高可用，连接顺序为顺序连接，断线时先重连当前使用地址
+            </summary>
+            <param name="pIP">服务器地址.</param>
+            <param name="uPort">服务器端口</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseSetSZL2TickMTCallBack(System.Boolean)">
+            <summary>
+            设置深交所L2 Tick数据多线程回调
+            </summary>
+            <param name="bMTCallBack">开关,true开启  false关闭</param>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseLogin(System.String,System.String)">
+            <summary>
+            连接行情服务器，发送用户认证信息，同步请求，调用前需先
+            </summary>
+            <param name="pUserName">账号名称</param>
+            <param name="pPassword">账号密码，加密后密码</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseLoginX(System.String,System.String,System.String)">
+            <summary>
+            连接行情服务器，发送用户认证信息，同步请求，调用前需先
+            </summary>
+            <param name="pUserName">账号名称</param>
+            <param name="pPassword">账号密码，加密后密码</param>
+            <param name="pOptions">可选附加参数，可填充null</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseGetConnectionState">
+            <summary>
+            获取连接状态.
+            </summary>
+            <returns>连接状态</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseGetServerAddr(System.IntPtr@,System.Int32@)">
+            <summary>
+            获取行情订阅服务器地址信息
+            RetCode BaseGetServerAddr(ServerState** ppServerAddrs, int* pSize);
+            </summary>
+            <param name="ppServerAddrs">存放服务器地址对象，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseGetMsgTypeList(System.IntPtr@,System.Int32@)">
+            <summary>
+            获取有权限的数据类型
+            BaseGetDataTypeList(MsgType** ppDataTypeList, int* pSize);
+            </summary>
+            <param name="ppDataTypeList">数据类型指针，数据大小即为有权限的数据个数，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseSubscribe(GTAQTS.Model.MsgType,System.String)">
+            <summary>
+            订阅行情，重复订阅同一个数据多次时取并集
+            </summary>
+            <param name="msgType">需要订阅的数据类型</param>
+            <param name="pCodeList">个股订阅列表，以“,”分割，末尾必须以\0结束，为NULL时订阅全市场</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseUnsubscribe(GTAQTS.Model.MsgType,System.String)">
+            <summary>
+            取消订阅
+            </summary>
+            <param name="msgType">需要取消订阅的数据类型</param>
+            <param name="pCodeList">取消个股列表，以“,”分割，末尾必须以\0结束，为NULL时取消所有代码</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseUnsubscribeAll">
+            <summary>
+            取消所有订阅信息
+            </summary>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseGetStockList(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            获取股票列表
+            BaseGetStockList(char* pMarketTag, StockSymbol** ppStockList, int* pSize);
+            </summary>
+            <param name="pMarketTag">市场标识，以“,”分割多个市场标识，末尾必须以\0结束，不允许为NULL</param>
+            <param name="ppStockList">返回的个股代码列表，带市场标志，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseReleaseValue(System.IntPtr@)">
+            <summary>
+            释放对象内存
+            void BaseReleaseValue(void** ppDataValue);
+            </summary>
+            <param name="ppDataValue">需释放内存</param>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_CFFEXL2_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询中金所L2静态数据
+            BaseQuerySnap_CFFEXL2_Static(char* pCodeList, CFFEXL2_Static** ppSnapCFFEXL2Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCFFEXL2Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_CFFEXL2_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询中金所L2实时行情
+            BaseQuerySnap_CFFEXL2_Quotation(char* pCodeList, CFFEXL2_Quotation** ppSnapCFFEXL2Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCFFEXL2Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_CZCEL1_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询郑商所L1静态数据
+            BaseQuerySnap_CZCEL1_Static(char* pCodeList, CZCEL1_Static** ppSnapCZCEL1Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_CZCEL1_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询郑商所L1实时行情
+            BaseQuerySnap_CZCEL1_Quotation(char* pCodeList, CZCEL1_Quotation** ppSnapCZCEL1Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_CZCEL1_ArbiQuotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询郑商所L1套利行情
+            BaseQuerySnap_CZCEL1_ArbiQuotation(char* pCodeList, CZCEL1_ArbiQuotation** ppSnapCZCEL1ArbiQuotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1ArbiQuotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_CZCEL1_MktStatus(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询郑商所L1市场状态
+            BaseQuerySnap_CZCEL1_MktStatus(char* pCodeList, CZCEL1_MktStatus** ppSnapCZCEL1MktStatus, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1MktStatus">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_CZCEL1_Status(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询郑商所L1品种状态
+            BaseQuerySnap_CZCEL1_Status(char* pCodeList, CZCEL1_Status** ppSnapCZCEL1Status, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapCZCEL1Status">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_ESUNNY_Index(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询易盛指数行情
+            BaseQuerySnap_ESUNNY_Index(char* pCodeList, ESUNNY_Index** ppSnapESUNNY_Index, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapESUNNY_Index">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL1_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L1静态数据
+            BaseQuerySnap_DCEL1_Static(char* pCodeList, DCEL1_Static** ppSnapDCEL1Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL1_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L1实时行情
+            BaseQuerySnap_DCEL1_Quotation(char* pCodeList, DCEL1_Quotation** ppSnapDCEL1Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL1_ArbiQuotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L1套利深度行情
+            BaseQuerySnap_DCEL1_ArbiQuotation(char* pCodeList, DCEL1_ArbiQuotation** ppSnapDCEL1_ArbiQuotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL1_ArbiQuotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL2_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L2静态数据
+            BaseQuerySnap_DCEL2_Static(char* pCodeList, DCEL2_Static** ppSnapDCEL2Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL2_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L2实时行情
+            BaseQuerySnap_DCEL2_Quotation(char* pCodeList, DCEL2_Quotation** ppSnapDCEL2Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL2_ArbiQuotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L2套利深度行情
+            BaseQuerySnap_DCEL2_ArbiQuotation(char* pCodeList, DCEL2_ArbiQuotation** ppSnapDCEL2_ArbiQuotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_ArbiQuotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL2_RealTimePrice(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L2实时结算价行情
+            BaseQuerySnap_DCEL2_RealTimePrice(char* pCodeList, DCEL2_RealTimePrice** ppSnapDCEL2_RealTimePrice, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_RealTimePrice">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL2_OrderStatistic(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L2委托统计行情
+            BaseQuerySnap_DCEL2_OrderStatistic(char* pCodeList, DCEL2_OrderStatistic** ppSnapDCEL2_OrderStatistic, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_OrderStatistic">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_DCEL2_MarchPriceQty(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询大商所L2分价成交量行情
+            BaseQuerySnap_DCEL2_MarchPriceQty(char* pCodeList, DCEL2_MarchPriceQty** ppSnapDCEL2_MarchPriceQty, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapDCEL2_MarchPriceQty">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SHFEL1_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上期所L1静态数据
+            BaseQuerySnap_SHFEL1_Static(char* pCodeList, SHFEL1_Static** ppSnapSHFEL1Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSHFEL1Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SHFEL1_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上期所L1实时行情
+            BaseQuerySnap_SHFEL1_Quotation(char* pCodeList, SHFEL1_Quotation** ppSnapSHFEL1Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSHFEL1Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SHFEL2_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上期所L2静态数据
+            BaseQuerySnap_SHFEL2_Static(char* pCodeList, SHFEL2_Static** ppSnapSHFEL2Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSHFEL2Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SHFEL2_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上期所L2实时行情
+            BaseQuerySnap_SHFEL2_Quotation(char* pCodeList, SHFEL2_Quotation** ppSnapSHFEL2Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSHFEL2Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_INEL1_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上期能源L1静态数据
+            BaseQuerySnap_INEL1_Static(char* pCodeList, INEL1_Static** ppSnapINEL1Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapINEL1Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_INEL1_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上期能源L1实时行情
+            BaseQuerySnap_INEL1_Quotation(char* pCodeList, INEL1_Quotation** ppSnapINEL1Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapINEL1Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_INEL2_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上期能源L2静态数据
+            BaseQuerySnap_INEL2_Static(char* pCodeList, INEL2_Static** ppSnapINEL2Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapINEL2Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_INEL2_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上期能源L1实时行情
+            BaseQuerySnap_INEL2_Quotation(char* pCodeList, INEL2_Quotation** ppSnapINEL2Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapINEL2Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2静态数据
+            BaseQuerySnap_SSEL2_Static(char* pCodeList, SSEL2_Static** ppSnapSSEL2Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2实时行情
+            BaseQuerySnap_SSEL2_Quotation(char* pCodeList, SSEL2_Quotation** ppSnapSSEL2Quotation, int* pSize)
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_Index(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2指数行情
+            BaseQuerySnap_SZSEL2_Index(char* pCodeList, SZSEL2_Index** ppSnapSZSEL2Index, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2Index">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_Auction(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2虚拟集合竞价
+            BaseQuerySnap_SSEL2_Auction(char* pCodeList, SSEL2_Auction** ppSnapSSEL2Auction, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2Auction">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_Transaction(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2逐笔成交
+            BaseQuerySnap_SSEL2_Transaction(char* pCodeList, SSEL2_Transaction** ppSnapSSEL2Transaction, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2Transaction">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_Overview(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2市场总览
+            BaseQuerySnap_SSEL2_Overview(char* pCodeList, SSEL2_Overview** ppSnapSSEL2Overview, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2Overview">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEIOL1_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所个股期权行情
+            BaseQuerySnap_SZSEL2_Index(char* pCodeList, SZSEL2_Index** ppSnapSZSEL2Index, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEIOL1Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEIOL1_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所个股期权行情
+            BaseQuerySnap_SZSEL2_Index(char* pCodeList, SZSEL2_Index** ppSnapSZSEL2Index, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEIOL1Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEIOL1_Strategy(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所个股期权L1组合策略
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEIOL1Strategy">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_Order(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2逐笔委托
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2_Order">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_BondStatic(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2债券静态数据
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2BondStatic">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_BondQuotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2债券实时行情
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2BondQuotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_BondTick(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2债券逐笔数据
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL2BondTick">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL2_BondOverview(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L2债券市场总览
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnap">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL1_BondStatic(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L1债券静态数据
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL1BondStatic">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SSEL1_BondQuotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所L1债券实时行情
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSSEL1BondQuotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL1_BondStatic(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L1债券静态数据
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL1BondStatic">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL1_BondQuotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L1债券实时行情
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL1BondQuotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2静态数据
+            BaseQuerySnap_SZSEL2_Static(char* pCodeList, SZSEL2_Static** ppSnapSZSEL2Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2实时行情
+            BaseQuerySnap_SZSEL2_Quotation(char* pCodeList, SZSEL2_Quotation** ppSnapSZSEL2Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_Status(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2证券状态
+            BaseQuerySnap_SZSEL2_Status(char* pCodeList, SZSEL2_Status** ppSnapSZSEL2StockStatus, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2StockStatus">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_Index(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2指数行情
+            BaseQuerySnap_SZSEL2_Index(char* pCodeList, SZSEL2_Index** ppSnapSZSEL2Index, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2Index">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_Order(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2逐笔委托
+            BaseQuerySnap_SZSEL2_Order(char* pCodeList, SZSEL2_Order** ppSnapSZSEL2Order, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2Order">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_Transaction(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2逐笔成交
+            BaseQuerySnap_SZSEL2_Transaction(char* pCodeList, SZSEL2_Transaction** ppSnapSZSEL2Transaction, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2Transaction">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_Tick(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2逐笔
+            BaseQuerySnap_SZSEL2_Tick(char* pCodeList, SZSEL2_Tick** ppSnapSZSEL2Tick, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2Tick">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_Cnindex(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2国证指数
+            BaseQuerySnap_SZSEL2_Cnindex(char* pCodeList, SZSEL2_Cnindex** ppSnapSZSEL2Cnindex, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2Cnindex">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondStatic(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2债券静态数据
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondStatic">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondQuotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深交所L2债券实时行情
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondQuotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondTransaction(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            深交所L2债券逐笔成交
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondTransaction">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondOrder(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            深交所L2债券逐笔委托
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondOrder">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondTick(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            深交所L2债券逐比消息
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondTick">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondMbrInfo(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            深交所L2债券交易商信息
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondMbrInfo">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondInvestorInfo(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            深交所L2债券交易主体信息
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondInvestorInfo">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondTraderInfo(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            深交所L2债券交易主体信息
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondTraderInfo">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_SZSEL2_BondBidBookingInfo(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            深交所L2债券市场竞买预约信息
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapSZSEL2BondBidBookingInfo">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKEXL2_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询港交所L2静态数据
+            BaseQuerySnap_HKEXL2_Static(char* pCodeList, HKEXL2_Static** ppSnapHKEXL2_Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKEXL2_Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKEXL2_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询港交所L2实时行情
+            BaseQuerySnap_HKEXL2_Quotation(char* pCodeList, HKEXL2_Quotation** ppSnapHKEXL2_Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKEXL2_Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKEXL2_BrokerQueue(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询港交所L2经纪人队列
+            BaseQuerySnap_HKEXL2_BrokerQueue(char* pCodeList, HKEXL2_BrokerQueue** ppSnapHKEXL2_BrokerQueue, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKEXL2_BrokerQueue">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKEXL2_Index(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询港交所L2指数行情
+            BaseQuerySnap_HKEXL2_Index(char* pCodeList, HKEXL2_Index** ppSnapHKEXL2_Index, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKEXL2_Index">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKEXL2_Overview(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询港交所L2市场总览
+            BaseQuerySnap_HKEXL2_Overview(char* pCodeList, HKEXL2_BrokerQueue** ppSnapHKEXL2_Overview, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKEXL2_Overview">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKSZL1_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深港通L1静态数据
+            BaseQuerySnap_HKSZL1_Static(char* pCodeList, HKSZL1_Static** ppSnapHKSZL1Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKSZL1Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKSZL1_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深港通L1实时行情
+            BaseQuerySnap_HKSZL1_Quotation(char* pCodeList, HKSZL1_Quotation** ppSnapHKSZL1Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKSZL1Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKSHL1_Static(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询沪港通L1静态数据
+            BaseQuerySnap_HKSHL1_Static(char* pCodeList, HKSHL1_Static** ppSnapHKSHL1Static, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKSHL1Static">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKSHL1_Quotation(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询沪港通L1实时行情
+            BaseQuerySnap_HKSHL1_Quotation(char* pCodeList, HKSHL1_Quotation** ppSnapHKSHL1Quotation, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKSHL1Quotation">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKEXL2_DQB(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询港交所L2互联市场日余额
+            BaseQuerySnap_HKEXL2_DQB(char* pCodeList, HKEXL2_DQB** ppSnapHKEXL2DQB, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKEXL2DQB">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKEXL2_MoneyFlow(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询港交所L2资金流向
+            BaseQuerySnap_HKEXL2_MoneyFlow(char* pCodeList, HKEXL2_MoneyFlow** ppSnapHKEXL2MoneyFlow, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKEXL2DQB">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKSHL1_Overview(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询沪港通L1市场总览
+            BaseQuerySnap_HKSHL1_Overview(char* pCodeList, HKSHL1_Overview** ppSnapHKSHL1_Overview, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKSHL1Overview">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.BaseQuerySnap_HKSZL1_Overview(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询深港通L1市场总览
+            BaseQuerySnap_HKSZL1_Overview(char* pCodeList, HKSZL1_Overview** ppSnapHKSZL1_Overview, int* pSize);
+            </summary>
+            <param name="pCodeList">快照订阅列表，NULL时为全市场快照数据</param>
+            <param name="ppSnapHKSHL1Overview">快照数据列表，需调用BaseReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.GetField_MsgType(System.IntPtr)">
+            <summary>
+            当前数据的消息类型
+            </summary>
+            <param name="pQuotationData">行情数据指针</param>
+            <returns>字段个数</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.GetField_Count(System.IntPtr)">
+            <summary>
+            字段个数
+            </summary>
+            <param name="pQuotationData">行情数据指针</param>
+            <returns>字段个数</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.GetField_Value(System.IntPtr,GTAQTS.Model.FieldID)">
+            <summary>
+            根据字段ID获取数据
+            </summary>
+            <param name="pQuotationData">行情数据指针</param>
+            <param name="FID">FID 标志</param>
+            <returns> IntPtr           -- IFieldValue指针，通过此指针获取内部数值</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.GetField_First(System.IntPtr)">
+            <summary>
+            设置为其实字段位置
+            </summary>
+            <param name="pQuotationData">行情数据指针</param>
+            <returns>IntPtr           -- IFieldValue指针，通过此指针获取内部数值</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.GetField_Next(System.IntPtr)">
+            <summary>
+            下移一个字段
+            </summary>
+            <param name="pQuotationData">行情数据指针</param>
+            <returns>IntPtr           -- IFieldValue指针，通过此指针获取内部数值</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.GetField_Subscript(System.IntPtr,System.Int32)">
+            <summary>
+            根据下标获取IFieldValue中的值
+            </summary>
+            <param name="pQuotationData">行情数据指针</param>
+            <param name="nIndex">下标索引</param>
+            <returns>IntPtr           -- IFieldValue指针，通过此指针获取内部数值</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_FID(System.IntPtr)">
+            <summary>
+            获取数据类型
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <returns> FieldID            -- 字段ID标志 </returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_Type(System.IntPtr)">
+            <summary>
+            获取数据类型
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <returns>字段数据类型</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_Char(System.IntPtr,System.Char@)">
+            <summary>
+            获取char类型数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="cValue">返回数值</param>
+            <returns>正确返回数据， false -- 数据类型错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_Short(System.IntPtr,System.Int16@)">
+            <summary>
+            获取short类型数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="nValue">返回数值</param>
+            <returns>正确返回数据， false -- 数据类型错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_UInt(System.IntPtr,System.UInt32@)">
+            <summary>
+            获取usigned int类型数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="nValue">返回数值</param>
+            <returns>正确返回数据， false -- 数据类型错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_Int(System.IntPtr,System.Int32@)">
+            <summary>
+            获取char类型数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="nValue">返回数值</param>
+            <returns>正确返回数据， false -- 数据类型错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_String(System.IntPtr,System.Byte[],System.Int32@)">
+            <summary>
+            获取字符串类型数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="pValue">字符串内容</param>
+            <param name="nSize">字符串大小，如小于实际大小，则返回实际大小并返回失败</param>
+            <returns>正确返回数据， false -- 数据类型错误，或字符串大小错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_Longlong(System.IntPtr,System.Int64@)">
+            <summary>
+            获取longlong字符类型数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="llValue">返回数值</param>
+            <returns>正确返回数据， false -- 数据类型错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_ULonglong(System.IntPtr,System.UInt64@)">
+            <summary>
+            获取unsigned longlong字符类型数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="llValue">返回数值</param>
+            <returns>正确返回数据， false -- 数据类型错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_Float(System.IntPtr,System.Single@)">
+            <summary>
+            获取fValue类型数值
+            bool GTA_API_EXPORT __cdecl Field_Float(IntPtr pIFieldValue, float* fValue);
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="fValue">返回数值</param>
+            <returns>正确返回数据， false -- 数据类型错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_Double(System.IntPtr,System.Double@)">
+            <summary>
+            获取double类型数值
+            bool GTA_API_EXPORT __cdecl Field_Double(IntPtr pIFieldValue, double* dbValue);
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="fValue">返回数值</param>
+            <returns>正确返回数据， false -- 数据类型错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_Queue(System.IntPtr,System.UInt32[],System.Int32@)">
+            <summary>
+            获取quence队列数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="Queue">返回数值</param>
+            <param name="size">对列可以存放的数据个数</param>
+            <returns>true -- 正确返回数据， false -- 数据类型错误，或字符串大小错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.Field_QueueDouble(System.IntPtr,System.Double[],System.Int32@)">
+            <summary>
+            获取quence队列数值
+            </summary>
+            <param name="pIFieldValue">行情数据指针</param>
+            <param name="Queue">返回数值</param>
+            <param name="size">对列可以存放的数据个数</param>
+            <returns>true -- 正确返回数据， false -- 数据类型错误，或字符串大小错误</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExInit">
+            <summary>
+            基础API环境初始化
+            </summary>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExUninit">
+            <summary>
+            基础API环境反初始化
+            </summary>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExSetTimeout(System.Int32)">
+            <summary>
+            设置超时时间，设置即时生效，同步调用的超时时间
+            </summary>
+            <param name="nSecond">超时时间，单位秒</param>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExRegisterService(System.String,System.UInt16)">
+            <summary>
+            注册行情服务器地址，可注册多个不同地址，实现高可用，连接顺序为顺序连接，断线时先重连当前使用地址
+            </summary>
+            <param name="pIP">服务器地址.</param>
+            <param name="uPort">服务器端口</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExLogin(System.String,System.String)">
+            <summary>
+            连接行情服务器，发送用户认证信息，同步请求，调用前需先
+            </summary>
+            <param name="pUserName">账号名称</param>
+            <param name="pPassword">账号密码，加密后密码</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExGetConnectionState">
+            <summary>
+            获取连接状态.
+            </summary>
+            <returns>连接状态</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExGetServerAddr(System.IntPtr@,System.Int32@)">
+            <summary>
+            获取行情订阅服务器地址信息
+            RetCode ExGetServerAddr(ServerState** ppServerAddrs, int* pSize);
+            </summary>
+            <param name="ppServerAddrs">存放服务器地址对象，需调用ExReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExGetMsgTypeList(System.IntPtr@,System.Int32@)">
+            <summary>
+            获取有权限的数据类型
+            ExGetDataTypeList(MsgType** ppDataTypeList, int* pSize);
+            </summary>
+            <param name="ppServerAddrs">数据类型指针，数据大小即为有权限的数据个数，需调用ExReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExSubscribe(GTAQTS.Model.DataCategory,System.String,System.IntPtr)">
+            <summary>
+            订阅行情，重复订阅同一个数据多次时取并集
+            ExSubscribe(DataCategory msgCategory, char* pCodeList, void*  pSessionTag);
+            </summary>
+            <param name="msgCategory">需要订阅的数据类型</param>
+            <param name="pCodeList">个股订阅列表，以“,”分割，末尾必须以\0结束，不允许为NULL</param>
+            <param name="pSessionTag">会话标志,回调参数，在OnSubscribe时返回该数值</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExUnsubscribe(GTAQTS.Model.DataCategory,System.String,System.IntPtr)">
+            <summary>
+            根据数据分类、用户标识和代码列表取消订阅
+            ExUnsubscribe(DataCategory msgCategory, char* pCodeList, void*  pSessionTag);
+            </summary>
+            <param name="msgCategory">需要取消订阅的数据类型</param>
+            <param name="pCodeList">取消个股列表，以“,”分割，末尾必须以\0结束，不允许为NULL</param>
+            <param name="pSessionTag">会话标志,回调参数，在OnSubscribe时返回该数值</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExUnsubscribeByCategory(GTAQTS.Model.DataCategory,System.String)">
+            <summary>
+            根据数据分类和代码列表取消订阅
+            ExUnsubscribeByCategory(DataCategory msgCategory, char* pCodeList);
+            </summary>
+            <param name="msgCategory">取消订阅的数据分类</param>
+            <param name="pCodeList">取消个股列表，以“,”分割，末尾必须以\0结束</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExUnsubscribeBySessionTag(System.IntPtr,System.String)">
+            <summary>
+            根据数据分类和代码列表取消订阅
+            ExUnsubscribeBySessionTag(void*  pSessionTag, char* pCodeList);
+            </summary>
+            <param name="pSessionTag">会话标志,取消该标志关联的所有订阅</param>
+            <param name="pCodeList">取消个股列表，以“,”分割，末尾必须以\0结束</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExUnsubscribeAll">
+            <summary>
+            取消所有订阅信息
+            </summary>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExQuerySnap(GTAQTS.Model.DataCategory,System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            查询上交所静态数据
+            ExQuerySnap(DataCategory msgCategory, char* pCodeList, void** ppSnapData, int* pSize);
+            </summary>
+            <param name="msgCategory">需要查询的数据分类</param>
+            <param name="pCodeList">个股订阅列表，以“,”分割，末尾必须以\0结束，不允许为NULL</param>
+            <param name="ppSnapData">快照数据列表，需调用ExReleaseQuerySnap释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExReleaseQuerySnap(System.IntPtr@)">
+            <summary>
+            释放查询快照返回对象内存
+            </summary>
+            <param name="ppSnapData">快照内存指针ExQuerySnap返回的内存</param>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExGetStockList(System.String,System.IntPtr@,System.Int32@)">
+            <summary>
+            获取股票列表
+            ExGetStockList(char* pMarketTag, StockSymbol** ppStockList, int* pSize);
+            </summary>
+            <param name="pMarketTag">市场标识，以“,”分割多个市场标识，末尾必须以\0结束，不允许为NULL</param>
+            <param name="ppStockList">返回的个股代码列表，带市场标志，需调用ExReleaseValue释放内存</param>
+            <param name="pSize">返回数据个数</param>
+            <returns>错误代码</returns>
+        </member>
+        <member name="M:GTAQTS.GTAQTSApiDll.ExReleaseValue(System.IntPtr@)">
+            <summary>
+            释放对象内存
+            void ExReleaseValue(void** ppDataValue);
+            </summary>
+            <param name="ppDataValue">需释放内存</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseLoginState">
+            <summary>
+            登陆状态返回
+            </summary>
+            <param name="errCode">失败原因(用户过期、重复登陆)用户需对这两个进行处理</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseConnectionState">
+            <summary>
+            连接状态返回，连接成功/失败
+            </summary>
+            <param name="msgType">消息类型</param>
+            <param name="errCode">失败原因，成功时返回0</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseDelayTime">
+            <summary>
+            延时数据返回
+            </summary>
+            <param name="pDelayTime">延时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CFFEXL2_Quotation">
+            <summary>
+            中金所L2实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CFFEXL2_Quotation)(const CFFEXL2_Quotation* pRealCFFEXL2Quotation);
+            </summary>
+            <param name="pRealCFFEXL2Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CFFEXL2_Static">
+            <summary>
+            上交所L2静态数据订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CFFEXL2_Static)(const CFFEXL2_Static* pRealCFFEXL2Static);
+            </summary>
+            <param name="pRealCFFEXL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL1_Static">
+            <summary>
+            郑商所L1静态数据订阅数据实时回调接口
+            typedef void SetOnBaseSubscribe_CZCEL1_Static(OnBaseSubscribe_CZCEL1_Static cbOnBaseSubscribe_CZCEL1_Static);
+            </summary>
+            <param name="pRealCZCEL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL1_Quotation">
+            <summary>
+            郑商所L1实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL1_Quotation)(const CZCEL1_Quotation* pRealCZCEL1Quotation);
+            </summary>
+            <param name="pRealCZCEL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL1_ArbiQuotation">
+            <summary>
+            郑商所L1套利行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL1_ArbiQuotation)(const CZCEL1_ArbiQuotation* pRealCZCEL1ArbiQuotation);
+            </summary>
+            <param name="pRealCZCEL1ArbiQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL1_MktStatus">
+            <summary>
+            郑商所L1市场状态订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL1_MktStatus)(const CZCEL1_MktStatus* pRealCZCEL1MktStatus);
+            </summary>
+            <param name="pRealCZCEL1MktStatus">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL1_Status">
+            <summary>
+            郑商所L1品种状态订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL1_Status)(const CZCEL1_Status* pRealCZCEL1Status);
+            </summary>
+            <param name="pRealCZCEL1Status">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_ESUNNY_Index">
+            <summary>
+            易盛指数行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_ESUNNY_Index)(const ESUNNY_Index* pRealESUNNY_Index);
+            </summary>
+            <param name="pRealESUNNY_Index">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL2_ArbiStatic">
+            <summary>
+            郑商所L2套利静态数据订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL2_ArbiStatic)(const * pRealCZCEL2ArbiStatic);
+            </summary>
+            <param name="pRealCZCEL2ArbiStatic">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL2_Static">
+            <summary>
+            郑商所L2静态数据订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL2_Static)(const * pRealCZCEL2Static);
+            </summary>
+            <param name="pRealCZCEL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL2_MktStatus">
+            <summary>
+            郑商所L2市场状态订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL2_MktStatus)(const * pRealCZCEL2MktStatus);
+            </summary>
+            <param name="pRealCZCEL2MktStatus">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL2_Status">
+            <summary>
+            郑商所L2品种状态订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL2_Status)(const * pRealCZCEL2Status);
+            </summary>
+            <param name="pRealCZCEL2Status">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL2_Quotation">
+            <summary>
+            郑商所L2实时行情(不常变部分)订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL2_Quotation)(const * pRealCZCEL2Quotation);
+            </summary>
+            <param name="pRealCZCEL2Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL2_ChgQuotation">
+            <summary>
+            郑商所L2实时行情(常变部分)订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL2_ChgQuotation)(const * pRealCZCEL2ChgQuotation);
+            </summary>
+            <param name="pRealCZCEL2ChgQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL2_LevelQuotation">
+            <summary>
+            郑商所L2五档深度委托行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL2_LevelQuotation)(const * pRealCZCEL2LevelQuotation);
+            </summary>
+            <param name="pRealCZCEL2LevelQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_CZCEL2_MarchPriceQty">
+            <summary>
+            郑商所L2分价成交量行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_CZCEL2_MarchPriceQty)(const * pRealCZCEL2MarchPriceQty);
+            </summary>
+            <param name="pRealCZCEL2MarchPriceQty">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL1_Static">
+            <summary>
+            大商所L1静态数据订阅数据实时回调接口
+            typedef void SetOnBaseSubscribe_DCEL1_Static(OnBaseSubscribe_DCEL1_Static cbOnBaseSubscribe_DCEL1_Static);
+            </summary>
+            <param name="pRealDCEL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL1_Quotation">
+            <summary>
+            大商所L1实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_DCEL1_Quotation)(const DCEL1_Quotation* pRealDCEL1Quotation);
+            </summary>
+            <param name="pRealDCEL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL1_ArbiQuotation">
+            <summary>
+            大商所L1套利深度行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_DCEL1_ArbiQuotation)(const DCEL1_ArbiQuotation* pRealDCEL1_ArbiQuotation);
+            </summary>
+            <param name="pRealDCEL1_ArbiQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL2_Static">
+            <summary>
+            大商所L2静态数据订阅数据实时回调接口
+            typedef void SetOnBaseSubscribe_DCEL2_Static(OnBaseSubscribe_DCEL2_Static cbOnBaseSubscribe_DCEL2_Static);
+            </summary>
+            <param name="pRealDCEL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL2_Quotation">
+            <summary>
+            大商所L2实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_DCEL2_Quotation)(const DCEL2_Quotation* pRealDCEL2Quotation);
+            </summary>
+            <param name="pRealDCEL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL2_ArbiQuotation">
+            <summary>
+            大商所L2套利深度行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_DCEL2_ArbiQuotation)(const DCEL2_ArbiQuotation* pRealDCEL2_ArbiQuotation);
+            </summary>
+            <param name="pRealDCEL2_ArbiQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL2_RealTimePrice">
+            <summary>
+            大商所L2实时结算价行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_DCEL2_RealTimePrice)(const DCEL2_RealTimePrice* pRealDCEL2_RealTimePrice);
+            </summary>
+            <param name="pRealDCEL2_RealTimePrice">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL2_OrderStatistic">
+            <summary>
+            大商所L2委托统计行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_DCEL2_OrderStatistic)(const DCEL2_OrderStatistic* pRealDCEL2_OrderStatistic);
+            </summary>
+            <param name="pRealDCEL2_OrderStatistic">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_DCEL2_MarchPriceQty">
+            <summary>
+            大商所L2分价成交量行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_DCEL2_MarchPriceQty)(const DCEL2_MarchPriceQty* pRealDCEL2_MarchPriceQty);
+            </summary>
+            <param name="pRealDCEL2_MarchPriceQty">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SHFEL1_Static">
+            <summary>
+            上期所L1静态数据订阅数据实时回调接口
+            typedef void SetOnBaseSubscribe_SHFEL1_Static(OnBaseSubscribe_SHFEL1_Static cbOnBaseSubscribe_SHFEL1_Static);
+            </summary>
+            <param name="pRealSHFEL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SHFEL1_Quotation">
+            <summary>
+            上期所L1实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SHFEL1_Quotation)(const SHFEL1_Quotation* pRealSHFEL1Quotation);
+            </summary>
+            <param name="pRealSHFEL1Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SHFEL2_Static">
+            <summary>
+            上期所L2静态数据订阅数据实时回调接口
+            typedef void SetOnBaseSubscribe_SHFEL2_Static(OnBaseSubscribe_SHFEL2_Static cbOnBaseSubscribe_SHFEL2_Static);
+            </summary>
+            <param name="pRealSHFEL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SHFEL2_Quotation">
+            <summary>
+            上期所L2实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SHFEL2_Quotation)(const SHFEL2_Quotation* pRealSHFEL2Quotation);
+            </summary>
+            <param name="pRealSHFEL2Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_INEL1_Static">
+            <summary>
+            上期能源L1静态数据订阅数据实时回调接口
+            typedef void SetOnBaseSubscribe_INEL1_Static(OnBaseSubscribe_INEL1_Static cbOnBaseSubscribe_INEL1_Static);
+            </summary>
+            <param name="pRealINEL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_INEL1_Quotation">
+            <summary>
+            上期能源L1实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_INEL1_Quotation)(const INEL1_Quotation* pRealINEL1Quotation);
+            </summary>
+            <param name="pRealINEL1Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_INEL2_Static">
+            <summary>
+            上期能源L2静态数据订阅数据实时回调接口
+            typedef void SetOnBaseSubscribe_INEL2_Static(OnBaseSubscribe_INEL2_Static cbOnBaseSubscribe_INEL2_Static);
+            </summary>
+            <param name="pRealINEL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_INEL2_Quotation">
+            <summary>
+            上期能源L2实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_INEL2_Quotation)(const INEL2_Quotation* pRealINEL2Quotation);
+            </summary>
+            <param name="pRealINEL2Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL1_Quotation">
+            <summary>
+            上交所L1实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEL1_Quotation)(const SSEL1_Quotation* pRealSSEL1Quotation);
+            </summary>
+            <param name="pRealSSEL1Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL1_Static">
+            <summary>
+            上交所L1静态数据快照订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEL1_Static)(const SSEL1_Static* pRealSSEL1Static);
+            </summary>
+            <param name="pRealSSEL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSE_IndexPress">
+            <summary>
+            上交所指数通快照订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSE_IndexPress)(const SSE_IndexPress* pRealSSEIndexPress);
+            </summary>
+            <param name="pRealSSEIndexPress">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_Quotation">
+            <summary>
+            上交所L2实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEL2_Quotation)(const SSEL2_Quotation* pRealSSEL2Quotation);
+            </summary>
+            <param name="pRealSSEL2Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_Index">
+            <summary>
+            上交所L2指数行情快照订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEL2_Index)(const SSEL2_Index* pRealSSEL2Index);
+            </summary>
+            <param name="pRealSSEL2Index">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_Auction">
+            <summary>
+            上交所L2虚拟集合竞价订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEL2_Auction)(const SSEL2_Auction* pRealSSEL2Auction);
+            </summary>
+            <param name="pRealSSEL2Auction">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_Transaction">
+            <summary>
+            上交所L2逐笔成交订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEL2_Transaction)(const SSEL2_Transaction* pRealSSEL2Transaction);
+            </summary>
+            <param name="pRealSSEL2Transaction">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_Overview">
+            <summary>
+            上交所L2市场总览订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEL2_Overview)(const SSEL2_Overview* pRealSSEL2Overview);
+            </summary>
+            <param name="pRealSSEL2Overview">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_Static">
+            <summary>
+            上交所L2静态数据订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEL2_Static)(const SSEL2_Static* pRealSSEL2Static);
+            </summary>
+            <param name="pRealSSEL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEIOL1_Static">
+            <summary>
+            上交所个股期权静态数据订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEIOL1_Static)(const SSEIOL1_Static* pRealSSEIOL1Static);
+            </summary>
+            <param name="pRealSSEIOL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEIOL1_Quotation">
+            <summary>
+            上交所个股期权实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_SSEIOL1_Quotation)(const SSEIOL1_Quotation* pRealSSEIOL1Quotation);
+            </summary>
+            <param name="pRealSSEIOL1Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEIOL1_Strategy">
+            <summary>
+            上交所个股期权L1组合策略订阅数据实时回调接口
+            </summary>
+            <param name="pRealSSEIOL1Strategy">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_Order">
+            <summary>
+            上交所L2逐笔委托订阅数据实时回调接口
+            </summary>
+            <param name="pRealSSEL2Order">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_BondStatic">
+            <summary>
+            上交所L2债券静态数据订阅数据实时回调接口
+            </summary>
+            <param name="pRealSSEL2BondStatic">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_BondQuotation">
+            <summary>
+            上交所L2债券实时行情订阅数据实时回调接口
+            </summary>
+            <param name="pRealSSEL2BondQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_BondTick">
+            <summary>
+            上交所L2债券逐笔数据订阅数据实时回调接口
+            </summary>
+            <param name="pRealSSEL2BondTick">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL2_BondOverview">
+            <summary>
+            上交所L2债券市场总览订阅数据实时回调接口
+            </summary>
+            <param name="pRealSSEL2BondOverview">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL1_BondStatic">
+            <summary>
+            上交所L1债券静态数据订阅数据实时回调接口
+            </summary>
+            <param name="pRealSSEL1BondStatic">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SSEL1_BondQuotation">
+            <summary>
+            上交所L1债券实时行情订阅数据实时回调接口
+            </summary>
+            <param name="pRealSSEL1BondQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL1_BondStatic">
+            <summary>
+            深交所L1债券静态数据订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL1BondStatic">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL1_BondQuotation">
+            <summary>
+            深交所L1债券实时行情订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL1BondQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_Static">
+            <summary>
+            深交所L2静态数据订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_Quotation">
+            <summary>
+            深交所L2实时行情订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_Status">
+            <summary>
+            深交所L2证券状态订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2Status">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_Index">
+            <summary>
+            深交所L2指数行情订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2Index">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_Order">
+            <summary>
+            深交所L2逐笔委托订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2Order">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_Transaction">
+            <summary>
+            深交所L2逐笔成交订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2Transaction">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_Tick">
+            <summary>
+            深交所L2逐笔订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2Tick">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_Cnindex">
+            <summary>
+            深交所L2国证指数订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2Cnindex">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondStatic">
+            <summary>
+            深交所L2债券静态数据订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2BondStatic">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondQuotation">
+            <summary>
+            深交所L2债券实时行情订阅数据实时回调接口
+            </summary>
+            <param name="pRealSZSEL2BondQuotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondTransaction">
+            <summary>
+            深交所L2债券逐笔成交回调接口
+            </summary>
+            <param name="pRealSZSEL2BondTransaction">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondOrder">
+            <summary>
+            深交所L2债券逐笔委托回调接口
+            </summary>
+            <param name="pRealSZSEL2BondOrder">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondTick">
+            <summary>
+            深交所L2债券逐比消息回调接口
+            </summary>
+            <param name="pRealSZSEL2BondTick">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondMbrInfo">
+            <summary>
+            深交所L2债券交易商信息回调接口
+            </summary>
+            <param name="pRealSZSEL2BondMbrInfo">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondInvestorInfo">
+            <summary>
+            深交所L2债券交易主体信息回调接口
+            </summary>
+            <param name="pRealSZSEL2BondInvestorInfo">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondTraderInfo">
+            <summary>
+            深交所L2债券交易员信息回调接口
+            </summary>
+            <param name="pRealSZSEL2BondTraderInfo">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_SZSEL2_BondBidBookingInfo">
+            <summary>
+            深交所L2债券市场竞买预约信息回调接口
+            </summary>
+            <param name="pRealSZSEL2BondBidBookingInfo">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKEXL2_Static">
+            <summary>
+            港交所L2静态数据订阅数据实时回调接口
+            typedef void SetOnBaseSubscribe_HKEXL2_Static(OnBaseSubscribe_HKEXL2_Static cbOnBaseSubscribe_HKEXL2_Static);
+            </summary>
+            <param name="pRealHKEXL2Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKEXL2_Quotation">
+            <summary>
+            港交所L2实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_HKEXL2_Quotation)(const HKEXL2_Quotation* pRealHKEXL2Quotation);
+            </summary>
+            <param name="pRealHKEXL2Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKEXL2_BrokerQueue">
+            <summary>
+            港交所L2经纪人队列订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_HKEXL2_BrokerQueue)(const HKEXL2_BrokerQueue* pRealHKEXL2_BrokerQueue);
+            </summary>
+            <param name="pRealHKEXL2_BrokerQueue">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKEXL2_Index">
+            <summary>
+            港交所L2指数行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_HKEXL2_Index)(const HKEXL2_Index* pRealHKEXL2_Index);
+            </summary>
+            <param name="pRealHKEXL2_Index">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKEXL2_Overview">
+            <summary>
+            港交所L2市场总览订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_HKEXL2_Overview)(const HKEXL2_Overview* pRealHKEXL2_Overview);
+            </summary>
+            <param name="pRealHKEXL2_Overview">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKSZL1_Static">
+            <summary>
+            深港通L1静态数据订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_HKSZL1_Static)(const HKSZL1_Static* pRealHKSZL1Static);
+            </summary>
+            <param name="pRealHKSZL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKSZL1_Quotation">
+            <summary>
+            深港通L1实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_HKSZL1_Quotation)(const HKSZL1_Quotation* pRealHKSZL1Quotation);
+            </summary>
+            <param name="pRealHKSZL1Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKSHL1_Static">
+            <summary>
+            沪港通L1静态数据订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_HKSHL1_Static)(const HKSHL1_Static* pRealHKSHL1Static);
+            </summary>
+            <param name="pRealHKSHL1Static">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKSHL1_Quotation">
+            <summary>
+            沪港通L1实时行情订阅数据实时回调接口
+            typedef void (*OnBaseSubscribe_HKSHL1_Quotation)(const HKSHL1_Quotation* pRealHKSHL1Quotation);
+            </summary>
+            <param name="pRealHKSHL1Quotation">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKEXL2_DQB">
+             <summary>
+            港交所L2互联市场日余额订阅数据实时回调接口
+             typedef void (*OnBaseSubscribe_HKEXL2_DQB)(const HKEXL2_DQB* pRealHKEXL2DQB);
+             </summary>
+             <param name="pRealHKEXL2DQB">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKEXL2_MoneyFlow">
+             <summary>
+            港交所L2资金流向订阅数据实时回调接口
+             typedef void (*OnBaseSubscribe_HKEXL2_MoneyFlow)(const HKEXL2_MoneyFlow* pRealHKEXL2MoneyFlow);
+             </summary>
+             <param name="pRealHKEXL2MoneyFlow">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKSHL1_Overview">
+             <summary>
+            沪港通L1市场总览订阅数据实时回调接口
+             typedef void (*OnBaseSubscribe_HKSHL1_Overview)(const HKSHL1_Overview* pRealHKSHL1Overview);
+             </summary>
+             <param name="pRealHKSHL1Overview">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnBaseSubscribe_HKSZL1_Overview">
+             <summary>
+            深港通L1市场总览订阅数据实时回调接口
+             typedef void (*OnBaseSubscribe_HKSZL1_Overview)(const HKSZL1_Overview* pRealHKSZL1_Overview);
+             </summary>
+             <param name="pRealHKSZL1_Overview">实时数据</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnExLoginState">
+            <summary>
+            登陆状态返回
+            </summary>
+            <param name="errCode">失败原因(用户过期、重复登陆)用户需对这两个进行处理</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnExConnectionState">
+            <summary>
+            连接状态返回，连接成功/失败
+            </summary>
+            <param name="msgType">消息类型</param>
+            <param name="errCode">失败原因，成功时返回0</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnExSessionTagInvalid">
+            <summary>
+            会话标志失效（即在AIP中已经没有使用）
+            </summary>
+            <param name="pSessionTag">会话标志</param>
+        </member>
+        <member name="T:GTAQTS.GTAQTSApiDll.OnExSubscribe">
+            <summary>
+            订阅数据实时回调接口
+            </summary>
+            <param name="msgCategory">返回的数据分类</param>
+            <param name="RealData">实时数据</param>
+            <param name="pSessionTag">订阅数据时传入的用户标志</param>
+        </member>
+        <member name="T:GTAQTS.IGTAQTSCallbackExImpl">
+            <summary>
+            扩展行情
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackExImpl.SetGTAQTSCallbackEx(GTAQTS.IGTAQTSCallbackEx)">
+            <summary>
+            设置行情回调接口
+            <param name="CallBack">回调类</param>
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackExImpl.OnLoginState(GTAQTS.Model.RetCode)">
+            <summary>
+            登陆状态返回
+            </summary>
+            <param  name="errCode">失败原因(用户过期、重复登陆)用户需对这两个进行处理 </param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackExImpl.OnSessionTagInvalid(System.IntPtr)">
+            <summary>
+             会话标志失效（即在AIP中已经没有使用）
+            </summary>
+            <param name="SessionPtr">失效的会话标志</param>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackExImpl.OnConnectionState(GTAQTS.Model.MsgType,GTAQTS.Model.RetCode)">
+            <summary>
+            连接状态返回，连接成功/失败
+            </summary>
+            <param  name="msgType">消息类型 </param>
+            <param  name="errCode">失败原因，成功时返回0 </param>
+        </member>
+        <member name="F:GTAQTS.IGTAQTSCallbackExImpl.m_SessionObjs">
+            <summary>
+            SessionTag存储对象
+            </summary>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackExImpl.GetIntPtrBySessionTag(System.Object,System.Boolean)">
+            <summary>
+            添加SessionTag对象，用于回调
+            </summary>
+            <param name="SessionTag"></param>
+            <param name="bCreate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAQTS.IGTAQTSCallbackExImpl.OnSubscribe(GTAQTS.Model.DataCategory,System.IntPtr,System.IntPtr)">
+            <summary>
+            连接状态返回，连接成功/失败
+            </summary>
+        </member>
+        <member name="P:GTAQTS.IGTAQTSCallbackExImpl.Instance">
+            <summary>
+            单例
+            </summary>
+        </member>
+        <member name="P:GTAQTS.IGTAQTSCallbackExImpl.GetGTAQTSCallbackEx">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
