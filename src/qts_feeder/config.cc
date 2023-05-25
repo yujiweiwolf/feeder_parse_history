@@ -5,7 +5,7 @@
 #include <coral/coral.h>
 
 #include "config.h"
-
+#include "yaml-cpp/yaml.h"
 
 namespace co {
 
@@ -23,13 +23,55 @@ namespace co {
     }
 
     void Config::Init() {
-        string filename = x::FindFile("config.ini");
-        x::INI ini = x::Ini(filename);
+        // 读取配置
+        auto getStr = [&](const YAML::Node& node, const std::string& name) {
+            try {
+                return node[name] && !node[name].IsNull() ? node[name].as<std::string>() : "";
+            } catch (std::exception& e) {
+                LOG_ERROR << "load configuration failed: name = " << name << ", error = " << e.what();
+                throw std::runtime_error(e.what());
+            }
+        };
+        auto getStrings = [&](std::vector<std::string>* ret, const YAML::Node& node, const std::string& name, bool drop_empty = false) {
+            try {
+                if (node[name] && !node[name].IsNull()) {
+                    for (auto item : node[name]) {
+                        std::string s = x::Trim(item.as<std::string>());
+                        if (!drop_empty || !s.empty()) {
+                            ret->emplace_back(s);
+                        }
+                    }
+                }
+            } catch (std::exception& e) {
+                LOG_ERROR << "load configuration failed: name = " << name << ", error = " << e.what();
+                throw std::runtime_error(e.what());
+            }
+        };
+        auto getInt = [&](const YAML::Node& node, const std::string& name, const int64_t& default_value = 0) {
+            try {
+                return node[name] && !node[name].IsNull() ? node[name].as<int64_t>() : default_value;
+            } catch (std::exception& e) {
+                LOG_ERROR << "load configuration failed: name = " << name << ", error = " << e.what();
+                throw std::runtime_error(e.what());
+            }
+        };
+        auto getBool = [&](const YAML::Node& node, const std::string& name) {
+            try {
+                return node[name] && !node[name].IsNull() ? node[name].as<bool>() : false;
+            } catch (std::exception& e) {
+                LOG_ERROR << "load configuration failed: name = " << name << ", error = " << e.what();
+                throw std::runtime_error(e.what());
+            }
+        };
+
+        auto filename = x::FindFile("feeder.yaml");
+        YAML::Node root = YAML::LoadFile(filename);
         opt_ = QOptions::Load(filename);
 
-        data_dir_ = ini.get<string>("qts.data_dir");
-        parse_date_ = ini.get<string>("qts.parse_date");
-        market_ = ini.get<int>("qts.market");
+        auto wind_feeder = root["qts"];
+        data_dir_ = getStr(wind_feeder, "data_dir");
+        parse_date_ = getStr(wind_feeder, "parse_date");
+        market_ = getInt(wind_feeder,"market");
         stringstream ss;
         ss << "+-------------------- configuration begin --------------------+" << endl;
         ss << opt_->ToString() << endl;
@@ -39,5 +81,8 @@ namespace co {
             << "parse_date: " << parse_date_ << endl
             << "market: " << market_ << endl;
         __info << endl << ss.str();
+        __warn << endl << ss.str();
+        __error << endl << ss.str();
+        __trace << endl << ss.str();
     }
 }

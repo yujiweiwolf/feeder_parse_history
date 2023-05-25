@@ -96,7 +96,7 @@ namespace co {
                 x::Split(&vec_data, line, ",");
                 if (vec_data.size() > 20) {
                     string csv_code = x::Trim(vec_data[0]);
-                    if (csv_code == "Symbol") {
+                    if (csv_code == "symbol") {
                         continue;
                     }
                     transform(csv_code.begin(), csv_code.end(), csv_code.begin(), ::tolower);
@@ -235,6 +235,7 @@ namespace co {
 
             string line;
             // 解析文件中的每一行信息
+            vector<co::fbs::QTickT> all_tick;
             while (getline(infile, line)) {
                 // __info << line;
                 vector<string> vec_data;
@@ -244,12 +245,6 @@ namespace co {
                     string csv_code = x::Trim(vec_data[0]);
                     transform(csv_code.begin(), csv_code.end(), csv_code.begin(), ::tolower);
                     string code = csv_code + kSuffixDCE;
-
-                    QContextPtr ctx = QServer::Instance()->GetContext(code);
-                    if (!ctx) {
-                        ctx = QServer::Instance()->NewContext(code, code);
-                    }
-
                     string trading_time = x::Trim(vec_data[4]);
                     boost::algorithm::replace_all(trading_time, "-", "");
                     boost::algorithm::replace_all(trading_time, ".", "");
@@ -258,12 +253,12 @@ namespace co {
                     int64_t timestamp = atoll(trading_time.c_str());
                     int64_t trading_day = atoll(x::Trim(vec_data[3]).c_str());
 
-                    co::fbs::QTickT &m = ctx->PrepareQTick();
-                    if (m.dtype <= 0) {
-                        m.dtype = kDTypeFuture;
-                        m.src = kSrcQTickLevel2;
-                        m.market = kMarketDCE;
-                    }
+                    co::fbs::QTickT m ;
+                    m.code = code;
+                    m.dtype = kDTypeFuture;
+                    m.src = kSrcQTickLevel2;
+                    m.market = kMarketDCE;
+                    int64_t pre_timestamp = m.timestamp;
                     m.timestamp = timestamp;
                     m.date = trading_day;
                     int index = 4;
@@ -356,11 +351,28 @@ namespace co {
                             }
                         }
                     }
-                    string out = ctx->FinishQTick();
-                    QServer::Instance()->PushQTick(out);
+                    all_tick.push_back(m);
                 }
             }
             infile.close();
+            sort(all_tick.begin(), all_tick.end(), [](const co::fbs::QTickT &t1, const co::fbs::QTickT &t2) {
+                if (t1.timestamp < t2.timestamp) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            for (auto& it : all_tick) {
+                string code = it.code;
+                QContextPtr ctx = QServer::Instance()->GetContext(code);
+                if (!ctx) {
+                    ctx = QServer::Instance()->NewContext(code, code);
+                }
+                co::fbs::QTickT &m = ctx->PrepareQTick();
+                m = it;
+                string out = ctx->FinishQTick();
+                QServer::Instance()->PushQTick(out);
+            }
         }
     }
 }

@@ -30,4 +30,5 @@
 !lib/**/*.so*
 
 cmake-build-debug/
+history/
 

@@ -1,0 +1,32 @@
+feeder:
+  push_address: tcp://*:8000
+  sub_date: 20230328
+  sub_time: 0
+  wal: wal:///../data/feeder.ctadcefuture.wal?keep=30
+  enable_trace: false
+  enable_spot: false
+  enable_future: true
+  enable_option: true
+  enable_order: false
+  enable_knock: false
+  enable_queue: false
+  holo_sz_cycle: 0
+  holo_sh_cycle: 0
+  holo_threads: 0
+
+qts:
+  #data_dir: /home/work/sys/develop/feeder_parse_history/history/shfe
+  #parse_date: SHFEMFL2_TAQ_201910|SHFEMFL2_TAQ_201911
+  #parse_date: 202205|202206
+
+  data_dir: /home/work/sys/develop/feeder_parse_history/history/dce
+  #parse_date: MFL2_TAQ_201901|MFL2_TAQ_201902
+  parse_date: MFL2_TAQ_202012
+
+  # 1 shfe, 3 dce
+  market: 3
+
+log:
+  level: trace
+  async: false
+
